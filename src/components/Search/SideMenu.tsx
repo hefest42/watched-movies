@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 
 import { AiOutlineClose } from "react-icons/ai";
+import { BsSearch } from "react-icons/bs";
 import { movieList } from "../../store/MOVIES";
 
 interface SideMenuProps {
@@ -17,7 +18,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu }: SideMenuProps) => {
 
     return (
         <div
-            className={`fixed top-0 left-0 bg-slate-500 w-8/12 h-screen flex flex-col justify-between transition-transform	${
+            className={`fixed top-0 left-0 bg-slate-500 w-8/12 h-screen z-50 flex flex-col justify-between transition-transform	${
                 showSideMenu ? "" : "-translate-x-[100%]"
             }`}
         >
@@ -26,10 +27,23 @@ const SideMenu = ({ showSideMenu, setShowSideMenu }: SideMenuProps) => {
                     <h1>Movies Watched in 2021</h1>
                     <AiOutlineClose className="w-10 h-10 cursor-pointer" onClick={() => setShowSideMenu(false)} />
                 </div>
-                <form className="flex flex-col" onSubmit={searchHandler}>
-                    <input type="text" id="search" name="search" placeholder="Search For a Movie" />
-                    <button className="bg-yellow-400 text-black w-full hover:bg-yellow-300">Search</button>
+
+                <form className="mt-4 flex flex-col" onSubmit={searchHandler}>
+                    <div className="bg-white h-8 flex justify-center items-center">
+                        <BsSearch className="text-black w-6 h-6 ml-2" />
+                        <input
+                            className="bg-transparent text-black w-full h-full ml-2 outline-none border-none"
+                            type="text"
+                            id="search"
+                            name="search"
+                            placeholder="Search For a Movie"
+                        />
+                    </div>
+                    <button className="bg-yellow-400 text-black w-full h-10 mt-4 font-bold hover:bg-yellow-300">
+                        SEARCH
+                    </button>
                 </form>
+
                 <div className="w-full mt-8 flex flex-col justify-start items-start">
                     {movieInputs.map((genre) => (
                         <div key={genre} className="mt-2">

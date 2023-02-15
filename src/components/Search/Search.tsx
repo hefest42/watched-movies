@@ -8,7 +8,7 @@ const Search = () => {
     const [showSideMenu, setShowSideMenu] = useState(false);
 
     return (
-        <div className="w-full px-2  flex flex-col justify-between items-center">
+        <div className="w-full px-2 flex flex-col justify-between items-center">
             <div className="relative w-full flex justify-between items-center">
                 <p>Movies Watched in 2021</p>
                 <RxHamburgerMenu

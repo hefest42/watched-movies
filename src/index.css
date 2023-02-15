@@ -8,3 +8,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.movie {
+    @apply -translate-x-0 -translate-y-0 hover:shadow-[7px_7px_0px_0px_rgba(250,204,21)] hover:-translate-x-1 hover:-translate-y-1 transition-all;
+}
