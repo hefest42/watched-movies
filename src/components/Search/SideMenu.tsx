@@ -19,7 +19,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu }: SideMenuProps) => {
 
     return (
         <div
-            className={`fixed top-0 left-0 bg-slate-500 w-7/12 h-screen z-50 flex flex-col justify-between transition-transform md:w-5/12 lg:relative lg:w-[100%] lg:translate-x-0 ${
+            className={`fixed top-0 left-0 bg-slate-500 w-7/12 h-screen z-50 flex flex-col justify-between transition-transform md:relative md:w-[100%] md:translate-x-0 ${
                 showSideMenu ? "" : "-translate-x-[100%]"
             }`}
         >
@@ -27,7 +27,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu }: SideMenuProps) => {
                 <div className="flex justify-between items-center">
                     <h1>Movies Watched in 2021</h1>
                     <AiOutlineClose
-                        className="w-10 h-10 cursor-pointer lg:hidden"
+                        className="w-10 h-10 cursor-pointer md:hidden"
                         onClick={() => setShowSideMenu(false)}
                     />
                 </div>
