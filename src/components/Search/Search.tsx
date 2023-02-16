@@ -4,6 +4,7 @@ import SideMenu from "./SideMenu";
 
 import { RxHamburgerMenu } from "react-icons/rx";
 
+// This product uses the TMDB API but is not endorsed or certified by TMDB.
 const Search = () => {
     const [showSideMenu, setShowSideMenu] = useState(false);
 
