@@ -7,6 +7,7 @@ interface MoviePosterProps {
     movie: {
         id: string;
         name: string;
+        genre: string[];
         poster: string;
     };
 }

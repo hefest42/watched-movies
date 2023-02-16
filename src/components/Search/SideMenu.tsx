@@ -13,6 +13,8 @@ interface SideMenuProps {
 const SideMenu = ({ showSideMenu, setShowSideMenu }: SideMenuProps) => {
     const movieInputs = useMemo(() => [...new Set(movieList.map((movie) => movie.genre).flat())], [movieList]);
 
+    console.log(movieList.map((movie) => movie.genre));
+
     const searchHandler = (e: React.FormEvent) => {
         e.preventDefault();
     };
