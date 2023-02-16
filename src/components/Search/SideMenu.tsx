@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 
 import { AiOutlineClose } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import { movieList } from "../../store/MOVIES";
 
 interface SideMenuProps {
@@ -18,14 +19,17 @@ const SideMenu = ({ showSideMenu, setShowSideMenu }: SideMenuProps) => {
 
     return (
         <div
-            className={`fixed top-0 left-0 bg-slate-500 w-8/12 h-screen z-50 flex flex-col justify-between transition-transform	${
+            className={`fixed top-0 left-0 bg-slate-500 w-8/12 h-screen z-50 flex flex-col justify-between transition-transform lg:relative lg:w-[100%] lg:translate-x-0 ${
                 showSideMenu ? "" : "-translate-x-[100%]"
             }`}
         >
             <div className="px-2">
                 <div className="flex justify-between items-center">
                     <h1>Movies Watched in 2021</h1>
-                    <AiOutlineClose className="w-10 h-10 cursor-pointer" onClick={() => setShowSideMenu(false)} />
+                    <AiOutlineClose
+                        className="w-10 h-10 cursor-pointer lg:hidden"
+                        onClick={() => setShowSideMenu(false)}
+                    />
                 </div>
 
                 <form className="mt-4 flex flex-col" onSubmit={searchHandler}>
@@ -48,7 +52,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu }: SideMenuProps) => {
                     {movieInputs.map((genre) => (
                         <div key={genre} className="mt-2">
                             <input type="checkbox" name={genre} id={genre} />
-                            <label className="ml-2 text-lg" htmlFor={genre}>
+                            <label className="ml-2" htmlFor={genre}>
                                 {genre}
                             </label>
                         </div>

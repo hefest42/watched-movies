@@ -5,7 +5,7 @@ import AllMovies from "../All-Movies/AllMovies";
 
 const HomePage = () => {
     return (
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col lg:flex-row lg:justify-end">
             <Search />
             <AllMovies />
         </div>
