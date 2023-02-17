@@ -2,7 +2,6 @@ import React, { useMemo } from "react";
 
 import { AiOutlineClose } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
-import { Link } from "react-router-dom";
 import { movieList } from "../../store/MOVIES";
 
 interface SideMenuProps {
