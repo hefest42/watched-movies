@@ -62,8 +62,8 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, addFilters }: SideMenuProps) 
                 </div>
             </div>
 
-            <div>
-                <p>Dark/White</p>
+            <div className="flex justify-between p-2">
+                <p>Dark / Light</p>
                 <div>
                     <input type="checkbox" className="checkbox" id="checkbox" />
                     <label htmlFor="checkbox" className="checkbox-label">

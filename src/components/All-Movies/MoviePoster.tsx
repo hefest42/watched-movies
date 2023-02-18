@@ -18,14 +18,14 @@ const MoviePoster = ({ movie }: MoviePosterProps) => {
 
     return (
         <>
-            <Link to={`movie/${movie.id}`} state={movie.id} className={`w-full h-[32rem] p-4`}>
+            <Link to={`movie/${movie.id}`} state={movie.id} className={`w-full h-[31rem] p-4`}>
                 <img
                     loading="lazy"
                     src={movie.poster}
                     alt="movie poster"
                     className="movie w-full h-[85%] object-cover"
                 />
-                <h1 className="text-2xl text-center">{movie.name}</h1>
+                <h1 className="text-2xl text-center mt-2">{movie.name}</h1>
             </Link>
         </>
     );
