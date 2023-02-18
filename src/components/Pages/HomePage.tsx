@@ -16,20 +16,22 @@ const HomePage = () => {
     const [movies, setMovies] = useState<Movie[]>([]);
     const [filters, setFilters] = useState<string[]>([]);
 
-    const addFilters = (filter: string) => {
-        if (filters.some((genre) => genre === filter)) {
-            const filteredGenres = filters.filter((genre) => genre !== filter);
-            setFilters(filteredGenres);
-        } else setFilters((state) => [...state, filter]);
+    const compareTwoArrays = (arr1: string[], arr2: string[]) => {
+        return arr2.every((value) => arr1.includes(value));
     };
+
+    const addFilters = (filter: string) => {
+        if (filters.some((genre) => genre === filter)) setFilters((state) => state.filter((genre) => genre !== filter));
+        else setFilters((state) => [...state, filter]);
+    };
+
+    useEffect(() => {
+        setMovies(movieList.filter((movie) => compareTwoArrays(movie.genre, filters)));
+    }, [filters]);
 
     useEffect(() => {
         setMovies(movieList);
     }, []);
-
-    useEffect(() => {
-        console.log(filters);
-    }, [filters]);
 
     return (
         <div className="w-full flex flex-col md:flex-row md:justify-end">
