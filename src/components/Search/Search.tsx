@@ -4,8 +4,12 @@ import SideMenu from "./SideMenu";
 
 import { RxHamburgerMenu } from "react-icons/rx";
 
+interface SearchProps {
+    addFilters: (filter: string) => void;
+}
+
 // This product uses the TMDB API but is not endorsed or certified by TMDB.
-const Search = () => {
+const Search = ({ addFilters }: SearchProps) => {
     const [showSideMenu, setShowSideMenu] = useState(false);
 
     return (
@@ -17,7 +21,7 @@ const Search = () => {
                     onClick={() => setShowSideMenu((state) => !state)}
                 />
             </div>
-            <SideMenu showSideMenu={showSideMenu} setShowSideMenu={setShowSideMenu} />
+            <SideMenu showSideMenu={showSideMenu} setShowSideMenu={setShowSideMenu} addFilters={addFilters} />
         </div>
     );
 };

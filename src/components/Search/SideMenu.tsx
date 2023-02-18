@@ -7,16 +7,17 @@ import { movieList } from "../../store/MOVIES";
 interface SideMenuProps {
     showSideMenu: boolean;
     setShowSideMenu: (showSideMenu: boolean) => void;
+    addFilters: (filter: string) => void;
 }
 
-const SideMenu = ({ showSideMenu, setShowSideMenu }: SideMenuProps) => {
+const SideMenu = ({ showSideMenu, setShowSideMenu, addFilters }: SideMenuProps) => {
     const movieInputs = useMemo(() => [...new Set(movieList.map((movie) => movie.genre).flat())], [movieList]);
-
-    console.log(movieList.map((movie) => movie.genre));
 
     const searchHandler = (e: React.FormEvent) => {
         e.preventDefault();
     };
+
+    const addFiltersHandler = (filter: string) => addFilters(filter);
 
     return (
         <div
@@ -52,7 +53,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu }: SideMenuProps) => {
                 <div className="w-full mt-8 flex flex-col justify-start items-start">
                     {movieInputs.map((genre) => (
                         <div key={genre} className="mt-2">
-                            <input type="checkbox" name={genre} id={genre} />
+                            <input type="checkbox" name={genre} id={genre} onChange={() => addFiltersHandler(genre)} />
                             <label className="ml-2" htmlFor={genre}>
                                 {genre}
                             </label>
