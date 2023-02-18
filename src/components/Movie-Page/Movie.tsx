@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { useLocation } from "react-router-dom";
 
 // const options = {
 // 	method: 'GET',
@@ -14,8 +16,16 @@ import React from "react";
 // 	.catch(err => console.error(err));
 
 //https://rapidapi.com/linaspurinis/api/mdblist/
-const MoviePage = () => {
+const Movie = () => {
+    const location = useLocation();
+
+    useEffect(() => {
+        const { id } = location.state;
+
+        console.log(location);
+    });
+
     return <div></div>;
 };
 
-export default MoviePage;
+export default Movie;
