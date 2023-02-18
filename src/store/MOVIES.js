@@ -10,7 +10,7 @@ export const movieList = [
         id: "tt0332452",
         name: "Troy",
         genre: ["Drama", "History"],
-        poster:"https://www.google.com/search?q=troy&rlz=1C1GCEA_enRS982RS982&sxsrf=AOaemvJGluvsC-l10Bj3UVXBr3A5P_HsKw:1638539325849&tbm=isch&source=iu&ictx=1&fir=L467Cuw1gJr5KM%252CMuimAWKOrdxauM%252C%252Fm%252F01vw8k%253B2EcXFHHwnC0jjM%252CerWJWK99oe78fM%252C_%253BQfTCrxDxu-8pRM%252C48HO_ko48qGUpM%252C_%253BQD_gx5jDkh2rJM%252CC5aCWaXdPRsQCM%252C_%253BGfWVY29oJrrERM%252CQbhuRH9LHqJPFM%252C_%253B0TwwHP9O1hfJeM%252CecQ2xOnISafubM%252C_%253B1P6Ga4qM-eMg-M%252C3wtzHnscBIvSgM%252C_%253BxkUmfJ8u_yiBPM%252CeNJzDIZ4rpMiNM%252C_&vet=1&usg=AI4_-kTp2oPEiYYLjSHBZvZlG0X4s59i3w&sa=X&ved=2ahUKEwirp97T4sf0AhX1g_0HHWkeCo8Q_B16BAhgEAE#imgrc=2EcXFHHwnC0jjM" ,
+        poster:"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQf9CM5qT6EXTQY5YF87IKI_GBu0FVCe3IucLJvJJmGhsu7Ux33" ,
         
     },
     {
@@ -24,7 +24,7 @@ export const movieList = [
         id: "tt0190590",
         name: "O Brother, Where Art Thou?",
         genre: ["Adventure", "Comedy", "Crime"],
-        poster: "https://www.google.com/search?q=O+Brother,+Where+Art+Thou%3F&rlz=1C1GCEA_enRS982RS982&sxsrf=AOaemvICgVAf1_jdV9N9e5yNdgDK1Par9Q:1638540261047&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjVmNaR5sf0AhWY57sIHSxdBWgQ_AUoAXoECAEQAw#imgrc=rRDEZnq00gjAyM"
+        poster: "https://m.media-amazon.com/images/M/MV5BMjZkOTdmMWItOTkyNy00MDdjLTlhNTQtYzU3MzdhZjA0ZDEyXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg"
         
     },
     {
@@ -311,7 +311,7 @@ export const movieList = [
         id: "tt11083552",
         name: "Wrath of Man",
         genre: ["Action", "Crime", "Thriller"],
-        poster: "https://m.media-amazon.com/images/M/MV5BYTA3MTdiOGMtY2EwNC00OTljLTg1YWItNmNkNDNlOThkOTFmXkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_.jpg"
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSihMONgITeMLq585q_sOWW45YFDf9S-hm-NfgCybECNaRrHT"
         
     },
     {
@@ -450,7 +450,7 @@ export const movieList = [
         id: "tt1270797",
         name: "Venom: Let There Be Carnage",
         genre: ["Action", "Adventure", "Sci-Fi", "Comic Book"],
-        poster: "https://www.cuopm.com/wp-content/uploads/2021/10/1-1.jpeg",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKwv-tIaNSf3BW3wGfvG8TvpHmt92aObz9MxxROvVgsW8mlmQw",
     
     },
     // {
