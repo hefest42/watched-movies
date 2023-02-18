@@ -43,6 +43,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, addFilters }: SideMenuProps) 
                             id="search"
                             name="search"
                             placeholder="Search For a Movie"
+                            autoComplete="off"
                         />
                     </div>
                     <button className="bg-yellow-400 text-black w-full h-10 mt-4 font-bold hover:bg-yellow-300">

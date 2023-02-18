@@ -18,15 +18,29 @@ const MoviePoster = ({ movie }: MoviePosterProps) => {
 
     return (
         <>
-            <Link to={`movie/${movie.id}`} state={movie.id} className={`w-full h-[31rem] p-4`}>
-                <img
-                    loading="lazy"
-                    src={movie.poster}
-                    alt="movie poster"
-                    className="movie w-full h-[85%] object-cover"
-                />
-                <h1 className="text-2xl text-center mt-2">{movie.name}</h1>
-            </Link>
+            <div className={`relative w-full h-[31rem] px-4`}>
+                <div
+                    className={`absolute top-0 left-0 w-full h-full flex justify-center items-center ${
+                        loading ? "visible" : "invisible"
+                    }`}
+                >
+                    LOADING...
+                </div>
+                <Link
+                    to={`movie/${movie.id}`}
+                    state={movie.id}
+                    className={`w-full h-[31rem] px-4 ${loading ? "invisible" : "visible"}`}
+                >
+                    <img
+                        loading="lazy"
+                        src={movie.poster}
+                        onLoad={() => setLoading(false)}
+                        alt="movie poster"
+                        className="movie w-full h-[85%] object-cover"
+                    />
+                    <h1 className="text-2xl text-center mt-2">{movie.name}</h1>
+                </Link>
+            </div>
         </>
     );
 };
