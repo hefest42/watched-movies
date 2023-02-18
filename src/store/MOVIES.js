@@ -1,7 +1,3 @@
-export const compareTwoArrays = (arr1, arr2) => {
-    return arr2.every((value) => arr1.includes(value));
-};
-
 //prettier-ignore
 export const movieList = [
     {
