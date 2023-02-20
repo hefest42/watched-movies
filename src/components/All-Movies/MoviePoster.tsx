@@ -30,7 +30,10 @@ const MoviePoster = ({ movie }: MoviePosterProps) => {
                 </div>
                 <Link
                     to={`movie/${movie.id}`}
-                    state={movie.id}
+                    state={{
+                        id: movie.id,
+                        genres: movie.genre,
+                    }}
                     className={`w-full h-[31rem] px-4 ${loading ? "invisible" : "visible"}`}
                 >
                     <img
