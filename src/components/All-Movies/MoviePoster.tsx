@@ -18,7 +18,9 @@ const MoviePoster = ({ movie }: MoviePosterProps) => {
 
     return (
         <>
-            <div className={`relative w-full h-[31rem] px-4`}>
+            <div
+                className={`relative w-full px-2 h-[27rem] sm:h-[35rem] lg:h-[40rem] lg:px-4 xl:h-[32rem] 2xl:h-[28rem] `}
+            >
                 <div
                     className={`absolute top-0 left-0 w-full h-full flex justify-center items-center ${
                         loading ? "visible" : "invisible"
