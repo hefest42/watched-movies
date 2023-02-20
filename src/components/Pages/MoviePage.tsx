@@ -37,7 +37,11 @@ const MoviePage = () => {
 
     return (
         <div>
-            <PosterTitleInfo poster={movie.poster} title={movie.title} />
+            <PosterTitleInfo
+                poster={movie.poster}
+                title={movie.title}
+                info={[movie.type, movie.released, movie.runtime, movie.certification, movie.age_rating]}
+            />
             <GenreDescriptionRating genre={genres} description={movie.description} />
         </div>
     );
