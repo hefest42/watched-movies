@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import PosterTitleInformation from "../Movie-Page/PosterTitleInformation";
+import DescriptionGenre from "../Movie-Page/DescriptionGenre";
+import Ratings from "../Movie-Page/Ratings";
 
 import { useLocation } from "react-router-dom";
 
@@ -47,6 +49,8 @@ const MoviePage = () => {
                         rating: `${movie.certification}-${movie.age_rating}`,
                     }}
                 />
+                <DescriptionGenre description={movie.description} genres={movieGenres} />
+                <Ratings ratings={movie.ratings} />
             </div>
         </div>
     );
