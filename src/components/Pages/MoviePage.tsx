@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import PosterTitleInfo from "../Movie-Page/PosterTitleInfo";
-import GenreDescriptionRating from "../Movie-Page/GenreDescriptionRating";
+import PosterTitleInformation from "../Movie-Page/PosterTitleInformation";
 
 import { useLocation } from "react-router-dom";
 
@@ -36,13 +35,19 @@ const MoviePage = () => {
     }, []);
 
     return (
-        <div>
-            <PosterTitleInfo
-                poster={movie.poster}
-                title={movie.title}
-                info={[movie.type, movie.released, movie.runtime, movie.certification, movie.age_rating]}
-            />
-            <GenreDescriptionRating genres={movieGenres} description={movie.description} ratings={movie.ratings} />
+        <div className="w-full flex justify-center items-center">
+            <div className="w-full sm:w-8/12 md:w-7/12 lg:w-5/12 xl:w-4/12 2xl:w-3/12">
+                <PosterTitleInformation
+                    poster={movie.poster}
+                    title={movie.title}
+                    info={{
+                        type: movie.type,
+                        runtime: movie.runtime,
+                        release: movie.released,
+                        rating: `${movie.certification}-${movie.age_rating}`,
+                    }}
+                />
+            </div>
         </div>
     );
 };
