@@ -10,12 +10,12 @@ import { EXAMPLE_MOVIE as movie } from "../../store/MOVIES";
 //https://rapidapi.com/linaspurinis/api/mdblist/
 const MoviePage = () => {
     const location = useLocation();
-    const [genres, setGenres] = useState<string[]>([]);
+    const [movieGenres, setMovieGenres] = useState<string[]>([]);
 
     useEffect(() => {
-        const { id, genre } = location.state;
+        const { id, genres } = location.state;
 
-        setGenres(genres);
+        setMovieGenres(genres);
 
         const fetchMovie = async () => {
             try {
@@ -42,7 +42,7 @@ const MoviePage = () => {
                 title={movie.title}
                 info={[movie.type, movie.released, movie.runtime, movie.certification, movie.age_rating]}
             />
-            <GenreDescriptionRating genre={genres} description={movie.description} />
+            <GenreDescriptionRating genres={movieGenres} description={movie.description} ratings={movie.ratings} />
         </div>
     );
 };
