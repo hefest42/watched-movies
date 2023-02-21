@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 import { EXAMPLE_MOVIE as movie } from "../../store/MOVIES";
 
 //https://rapidapi.com/linaspurinis/api/mdblist/
+//https://rapidapi.com/goodmoviesaps/api/movie-details1/
 const MoviePage = () => {
     const location = useLocation();
     const [movieGenres, setMovieGenres] = useState<string[]>([]);
