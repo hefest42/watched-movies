@@ -16,62 +16,56 @@ type MovieRating = {
 };
 
 interface RatingsProps {
+    title: string;
     ratings: MovieRating[];
 }
 
-const Ratings = ({ ratings }: RatingsProps) => {
+const Ratings = ({ title, ratings }: RatingsProps) => {
     const location = useLocation();
     const [movieRatings, setMovieRatings] = useState<MovieRating[]>([]);
 
-    const ratingsHandler = (rating: MovieRating) => {
-        const { id } = location.state;
-
-        switch (rating.source) {
-            case "imdb":
-                return (
-                    <div>
-                        <a href={`https://www.imdb.com/title/${id}`} target="_blank" rel="noopener noreferrer">
-                            <FaImdb />
-                        </a>
-                        <p>{`${rating.value}/10`}</p>
-                    </div>
-                );
-
-            case "tomatoes":
-                return (
-                    <div>
-                        <a href="www.imdb/" target="_blank" rel="noopener noreferrer">
-                            <SiRottentomatoes />
-                        </a>
-                        <p>{`${rating.value}/100`}</p>
-                    </div>
-                );
-
-            case "tomatoesaudience":
-                return (
-                    <div>
-                        <a href="www.imdb/" target="_blank" rel="noopener noreferrer">
-                            <GiPopcorn />
-                        </a>
-                        <p>{`${rating.value}/100`}</p>
-                    </div>
-                );
-        }
+    const linkIconHandler = (source: string) => {
+        if (source === "imdb") return <FaImdb className="w-8 h-8" />;
+        if (source === "tomatoes") return <SiRottentomatoes className="w-8 h-8" />;
+        if (source === "tomatoesaudience") return <GiPopcorn className="w-8 h-8" />;
     };
 
     useEffect(() => {
-        const filteredRatings = ratings.filter((rating) => {
-            if (rating.source === "imdb" || rating.source === "tomatoes" || rating.source === "tomatoesaudience")
-                return rating;
-        });
+        const { id } = location.state;
+
+        // tomaotes has a proper working url, but tomatoesaudience doesn't...
+        const filteredRatings = ratings
+            .filter((rating) => {
+                if (rating.source.includes("imdb") || rating.source.includes("tomatoes")) return rating;
+            })
+            .map((rating) => {
+                return {
+                    source: rating.source,
+                    value: rating.value,
+                    url: rating.source.includes("imdb")
+                        ? `https://www.imdb.com/title/${id}/`
+                        : `https://www.rottentomatoes.com/m/${title}`,
+                };
+            });
 
         setMovieRatings(filteredRatings);
-    }, ratings);
+    }, [ratings]);
 
     return (
-        <div>
+        <div className="flex px-2 mt-4">
             {movieRatings.map((rating, i) => (
-                <div key={i}>{ratingsHandler(rating)}</div>
+                <a
+                    href={rating.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    key={i}
+                    className="mr-4 flex justify-center items-center hover:underline"
+                >
+                    <div className="mr-1">{linkIconHandler(rating.source)}</div>
+                    <div className="text-lg">
+                        {rating.source.includes("imdb") ? `${rating.value}/10` : `${rating.value}/100`}
+                    </div>
+                </a>
             ))}
         </div>
     );

@@ -37,8 +37,8 @@ const MoviePage = () => {
     }, []);
 
     return (
-        <div className="w-full flex justify-center items-center">
-            <div className="w-full sm:w-8/12 md:w-7/12 lg:w-5/12 xl:w-4/12 2xl:w-3/12">
+        <div className="w-full min-h-screen flex justify-center items-start">
+            <div className="w-full sm:w-11/12 md:w-9/12 lg:w-6/12 xl:w-6/12 2xl:w-4/12">
                 <PosterTitleInformation
                     poster={movie.poster}
                     title={movie.title}
@@ -50,7 +50,7 @@ const MoviePage = () => {
                     }}
                 />
                 <DescriptionGenre description={movie.description} genres={movieGenres} />
-                <Ratings ratings={movie.ratings} />
+                <Ratings title={movie.title} ratings={movie.ratings} />
             </div>
         </div>
     );
