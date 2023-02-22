@@ -60,8 +60,6 @@ const MoviePage = () => {
             actors: movie2.actors,
         };
 
-        console.log(combinedMovie);
-
         setTest(combinedMovie);
 
         // const fetchMovie = async () => {
@@ -98,7 +96,7 @@ const MoviePage = () => {
                     />
                     <DescriptionGenre description={test.description} genres={movieGenres} />
                     <Ratings title={test.title} ratings={test.ratings} />
-                    <DirectorsActors director={test.director} actors={test.actors} />
+                    <DirectorsActors director={test.director} actors={test.actors} trailer={test.trailer} />
                 </div>
             )}
         </div>
