@@ -13,7 +13,7 @@ const DirectorsActors = ({ director, actors, trailer }: DirectorsActorsProps) =>
 
     return (
         <div className="py-4 px-2">
-            <div className="w-full py-4 border-y border-yellow-400 flex">
+            <div className="w-full py-4 border-b border-yellow-400 flex">
                 Director:
                 {director.map((dir) => (
                     <p key={dir} className="ml-4">
@@ -22,7 +22,7 @@ const DirectorsActors = ({ director, actors, trailer }: DirectorsActorsProps) =>
                 ))}
             </div>
             <button
-                className="w-full py-4 mt-4 border-y border-yellow-400 flex justify-between items-center"
+                className="w-full py-4 mt-4 border-b border-yellow-400 flex justify-between items-center"
                 onClick={() => setShowActors((state) => !state)}
             >
                 <div>ACTORS</div>
@@ -36,8 +36,7 @@ const DirectorsActors = ({ director, actors, trailer }: DirectorsActorsProps) =>
                 ))}
             </div>
             <iframe
-                width="560"
-                height="315"
+                className="w-full h-[25rem]"
                 src="https://www.youtube.com/embed/WKuZJjPSLXQ"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
