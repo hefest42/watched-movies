@@ -4,10 +4,9 @@ import PosterTitleInformation from "../Movie-Page/PosterTitleInformation";
 import DescriptionGenre from "../Movie-Page/DescriptionGenre";
 import Ratings from "../Movie-Page/Ratings";
 import DirectorsActors from "../Movie-Page/DirectorsActors";
+import MovieTrailer from "../Movie-Page/MovieTrailer";
 
 import { useLocation } from "react-router-dom";
-
-import { EXAMPLE_MOVIE, EXAMPLE_MOVIE_2 } from "../../store/MOVIES";
 
 interface Movie {
     title: string;
@@ -43,9 +42,6 @@ const MoviePage = () => {
         const { id, genres } = location.state;
 
         setMovieGenres(genres);
-
-        // fetch("https://movie-details1.p.rapidapi.com/imdb_api/movie?id=tt1375666", );
-        // fetch(`https://mdblist.p.rapidapi.com/?i=${id}`
 
         const fetchMovie = async () => {
             try {
@@ -85,8 +81,6 @@ const MoviePage = () => {
                 };
 
                 setMovie(combinedMovie);
-
-                console.log(movie);
             } catch (error) {
                 console.error(error);
             }
@@ -111,7 +105,8 @@ const MoviePage = () => {
                     />
                     <DescriptionGenre description={movie.description} genres={movieGenres} />
                     <Ratings title={movie.title} ratings={movie.ratings} />
-                    <DirectorsActors director={movie.director} actors={movie.actors} trailer={movie.trailer} />
+                    <MovieTrailer trailer={movie.trailer} />
+                    <DirectorsActors director={movie.director} actors={movie.actors} />
                 </div>
             )}
         </div>

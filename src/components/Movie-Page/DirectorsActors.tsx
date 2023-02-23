@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 
 import { BiChevronsDown } from "react-icons/bi";
 
 interface DirectorsActorsProps {
     director: string[];
     actors: { id: string; name: string }[];
-    trailer: string;
 }
 
-const DirectorsActors = ({ director, actors, trailer }: DirectorsActorsProps) => {
+const DirectorsActors = ({ director, actors }: DirectorsActorsProps) => {
     const [showActors, setShowActors] = useState(true);
 
     return (
@@ -35,12 +34,6 @@ const DirectorsActors = ({ director, actors, trailer }: DirectorsActorsProps) =>
                     </p>
                 ))}
             </div>
-            <iframe
-                src="https://www.youtube.com/embed/WKuZJjPSLXQ"
-                title="YouTube video player"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-            ></iframe>
 
             {/* dont forget to remove */}
             <div className="w-full h-96"></div>
