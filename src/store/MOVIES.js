@@ -82,7 +82,7 @@ export const movieList = [
 
     },
     {
-        id: "/tt0974015",
+        id: "tt0974015",
         name: "Justice League",
         genre: ["Action", "Adventure", "Fantasy", "Comic Book"],
         poster: "https://images-na.ssl-images-amazon.com/images/I/81KX513BQxL.jpg"

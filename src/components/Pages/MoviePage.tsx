@@ -7,7 +7,7 @@ import DirectorsActors from "../Movie-Page/DirectorsActors";
 
 import { useLocation } from "react-router-dom";
 
-import { EXAMPLE_MOVIE as movie, EXAMPLE_MOVIE_2 as movie2 } from "../../store/MOVIES";
+import { EXAMPLE_MOVIE, EXAMPLE_MOVIE_2 } from "../../store/MOVIES";
 
 interface Movie {
     title: string;
@@ -36,67 +36,82 @@ interface Movie {
 //https://rapidapi.com/goodmoviesaps/api/movie-details1/
 const MoviePage = () => {
     const location = useLocation();
-    const [test, setTest] = useState<Movie>();
-    const [movieGenres, setMovieGenres] = useState<""[]>([]);
+    const [movie, setMovie] = useState<Movie>();
+    const [movieGenres, setMovieGenres] = useState<string[]>([]);
 
     useEffect(() => {
         const { id, genres } = location.state;
 
         setMovieGenres(genres);
 
-        const combinedMovie = {
-            title: movie.title,
-            year: movie.year,
-            released: movie.released,
-            description: movie.description,
-            type: movie.type,
-            ratings: movie.ratings,
-            certification: movie.certification,
-            ageRating: movie.age_rating,
-            runtime: movie.runtime,
-            poster: movie.poster,
-            trailer: movie.trailer,
-            director: movie2.director_names,
-            actors: movie2.actors,
+        // fetch("https://movie-details1.p.rapidapi.com/imdb_api/movie?id=tt1375666", );
+        // fetch(`https://mdblist.p.rapidapi.com/?i=${id}`
+
+        const fetchMovie = async () => {
+            try {
+                const response = await Promise.all([
+                    fetch(`https://mdblist.p.rapidapi.com/?i=${id}`, {
+                        method: "GET",
+                        headers: {
+                            "X-RapidAPI-Key": "a3d147fab7msh00956640f11a890p1c1f32jsn7faec2c28528",
+                            "X-RapidAPI-Host": "mdblist.p.rapidapi.com",
+                        },
+                    }),
+                    fetch(`https://movie-details1.p.rapidapi.com/imdb_api/movie?id=${id}`, {
+                        method: "GET",
+                        headers: {
+                            "X-RapidAPI-Key": "a3d147fab7msh00956640f11a890p1c1f32jsn7faec2c28528",
+                            "X-RapidAPI-Host": "movie-details1.p.rapidapi.com",
+                        },
+                    }),
+                ]);
+
+                const [movieDetails, movieDirectorAndActor] = await Promise.all(response.map((res) => res.json()));
+
+                const combinedMovie = {
+                    title: movieDetails.title,
+                    year: movieDetails.year,
+                    released: movieDetails.released,
+                    description: movieDetails.description,
+                    type: movieDetails.type,
+                    ratings: movieDetails.ratings,
+                    certification: movieDetails.certification,
+                    ageRating: movieDetails.age_rating,
+                    runtime: movieDetails.runtime,
+                    poster: movieDetails.poster,
+                    trailer: movieDetails.trailer,
+                    director: movieDirectorAndActor.director_names,
+                    actors: movieDirectorAndActor.actors,
+                };
+
+                setMovie(combinedMovie);
+
+                console.log(movie);
+            } catch (error) {
+                console.error(error);
+            }
         };
 
-        setTest(combinedMovie);
-
-        // const fetchMovie = async () => {
-        //     try {
-        //         const response = await fetch(`https://mdblist.p.rapidapi.com/?i=${id}`, {
-        //             headers: {
-        //                 "X-RapidAPI-Key": "a3d147fab7msh00956640f11a890p1c1f32jsn7faec2c28528",
-        //                 "X-RapidAPI-Host": "mdblist.p.rapidapi.com",
-        //             },
-        //         });
-
-        //         const data = await response.json();
-
-        //         console.log(data);
-        //     } catch (error) {}
-        // };
-
-        // fetchMovie();
+        fetchMovie();
     }, []);
 
     return (
         <div className="w-full min-h-screen flex justify-center items-start">
-            {test && (
+            {movie && (
                 <div className="w-full sm:w-11/12 md:w-9/12 lg:w-6/12 xl:w-6/12 2xl:w-4/12">
                     <PosterTitleInformation
-                        poster={test.poster}
-                        title={test.title}
+                        poster={movie.poster}
+                        title={movie.title}
                         info={{
-                            type: test.type,
-                            runtime: test.runtime,
-                            release: test.released,
-                            rating: `${test.certification}-${test.ageRating}`,
+                            type: movie.type,
+                            runtime: movie.runtime,
+                            release: movie.released,
+                            rating: `${movie.certification}-${movie.ageRating}`,
                         }}
                     />
-                    <DescriptionGenre description={test.description} genres={movieGenres} />
-                    <Ratings title={test.title} ratings={test.ratings} />
-                    <DirectorsActors director={test.director} actors={test.actors} trailer={test.trailer} />
+                    <DescriptionGenre description={movie.description} genres={movieGenres} />
+                    <Ratings title={movie.title} ratings={movie.ratings} />
+                    <DirectorsActors director={movie.director} actors={movie.actors} trailer={movie.trailer} />
                 </div>
             )}
         </div>
