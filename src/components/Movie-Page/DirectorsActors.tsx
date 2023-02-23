@@ -36,12 +36,13 @@ const DirectorsActors = ({ director, actors, trailer }: DirectorsActorsProps) =>
                 ))}
             </div>
             <iframe
-                className="w-full h-[25rem]"
                 src="https://www.youtube.com/embed/WKuZJjPSLXQ"
                 title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
             ></iframe>
 
+            {/* dont forget to remove */}
             <div className="w-full h-96"></div>
         </div>
     );
