@@ -1,9 +1,11 @@
 import React, { useMemo } from "react";
 
+import SearchForm from "./SearchForm";
 import CheckboxInput from "./CheckboxInput";
+import ThemeToggle from "./ThemeToggle";
 
 import { AiOutlineClose } from "react-icons/ai";
-import { BsSearch } from "react-icons/bs";
+
 import { movieList } from "../../store/MOVIES";
 
 interface SideMenuProps {
@@ -15,10 +17,6 @@ interface SideMenuProps {
 const SideMenu = ({ showSideMenu, setShowSideMenu, addFilters }: SideMenuProps) => {
     const movieInputs = useMemo(() => [...new Set(movieList.map((movie) => movie.genre).flat())], [movieList]);
 
-    const searchHandler = (e: React.FormEvent) => {
-        e.preventDefault();
-    };
-
     const addFiltersHandler = (filter: string) => addFilters(filter);
 
     return (
@@ -28,7 +26,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, addFilters }: SideMenuProps) 
             }`}
         >
             <div className="px-2">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center ">
                     <h1>Movies Watched in 2021</h1>
                     <AiOutlineClose
                         className="w-10 h-10 cursor-pointer md:hidden"
@@ -36,22 +34,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, addFilters }: SideMenuProps) 
                     />
                 </div>
 
-                <form className="mt-4 flex flex-col" onSubmit={searchHandler}>
-                    <div className="bg-white h-8 flex justify-center items-center">
-                        <BsSearch className="text-black w-6 h-6 ml-2" />
-                        <input
-                            className="bg-transparent text-black w-full h-full ml-2 outline-none border-none"
-                            type="text"
-                            id="search"
-                            name="search"
-                            placeholder="Search For a Movie"
-                            autoComplete="off"
-                        />
-                    </div>
-                    <button className="bg-yellow-400 text-black w-full h-10 mt-4 font-bold hover:bg-yellow-300">
-                        SEARCH
-                    </button>
-                </form>
+                <SearchForm />
 
                 <div className="w-full mt-8 flex flex-col justify-start items-start">
                     {movieInputs.map((genre) => (
@@ -60,17 +43,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, addFilters }: SideMenuProps) 
                 </div>
             </div>
 
-            <div className="flex justify-between p-2">
-                <p>Dark / Light</p>
-                <div>
-                    <input type="checkbox" className="checkbox" id="checkbox" />
-                    <label htmlFor="checkbox" className="checkbox-label">
-                        <i className="fas fa-moon"></i>
-                        <i className="fas fa-sun"></i>
-                        <span className="ball"></span>
-                    </label>
-                </div>
-            </div>
+            <ThemeToggle />
         </div>
     );
 };
