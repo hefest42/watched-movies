@@ -29,8 +29,8 @@ const PosterTitleInformation = ({ poster, title, info }: PosterTitleInformationP
     return (
         <>
             <img src={poster} alt={`movie poster`} />
-            <div className="px-2 text-sm">{movieInformation.join(" - ")}</div>
-            <h1 className="px-2 text-3xl">{title}</h1>
+            <div className="px-2 text-base sm:text-lg">{movieInformation.join(" - ")}</div>
+            <h1 className="px-2 mt-4 text-3xl sm:text-4xl">{title}</h1>
         </>
     );
 };

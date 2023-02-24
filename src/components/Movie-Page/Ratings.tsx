@@ -25,9 +25,9 @@ const Ratings = ({ title, ratings }: RatingsProps) => {
     const [movieRatings, setMovieRatings] = useState<MovieRating[]>([]);
 
     const linkIconHandler = (source: string) => {
-        if (source === "imdb") return <FaImdb className="w-8 h-8" />;
-        if (source === "tomatoes") return <SiRottentomatoes className="w-8 h-8" />;
-        if (source === "tomatoesaudience") return <GiPopcorn className="w-8 h-8" />;
+        if (source === "imdb") return <FaImdb className="w-8 h-8 md:w-10 md:h-10" />;
+        if (source === "tomatoes") return <SiRottentomatoes className="w-8 h-8 md:w-10 md:h-10" />;
+        if (source === "tomatoesaudience") return <GiPopcorn className="w-8 h-8 md:w-10 md:h-10" />;
     };
 
     useEffect(() => {
