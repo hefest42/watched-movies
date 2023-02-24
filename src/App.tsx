@@ -6,7 +6,6 @@ import HomePage from "./components/Pages/HomePage";
 import MoviePage from "./components/Pages/MoviePage";
 import WrongURL from "./components/Pages/WrongURL";
 
-// TODO potentially change the poster size of md:
 // TODO see if you can add lazy loading for the whole movie page
 // TODO change font sizes and font
 // TODO add search function
