@@ -33,18 +33,22 @@ const Ratings = ({ title, ratings }: RatingsProps) => {
     useEffect(() => {
         const { id } = location.state;
 
+        let rottentomatoesLink: any;
+
         // tomaotes has a proper working url, but tomatoesaudience doesn't...
         const filteredRatings = ratings
             .filter((rating) => {
                 if (rating.source.includes("imdb") || rating.source.includes("tomatoes")) return rating;
             })
             .map((rating) => {
+                if (rating.source === "tomatoes") rottentomatoesLink = rating.url;
+
                 return {
                     source: rating.source,
                     value: rating.value,
                     url: rating.source.includes("imdb")
                         ? `https://www.imdb.com/title/${id}/`
-                        : `https://www.rottentomatoes.com/m/${title}`,
+                        : `https://www.rottentomatoes.com/${rottentomatoesLink}`,
                 };
             });
 
@@ -63,7 +67,7 @@ const Ratings = ({ title, ratings }: RatingsProps) => {
                 >
                     <div className="mr-1">{linkIconHandler(rating.source)}</div>
                     <div className="text-lg">
-                        {rating.source.includes("imdb") ? `${rating.value}/10` : `${rating.value}/100`}
+                        {rating.source.includes("imdb") ? `${rating.value}/10` : `${rating.value}%`}
                     </div>
                 </a>
             ))}
