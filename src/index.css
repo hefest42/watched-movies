@@ -21,6 +21,7 @@ body {
     transition: all 0.2s linear;
 }
 
+/* Wrong url text animation */
 .star-wars {
     display: flex;
     justify-content: center;
@@ -76,6 +77,17 @@ iframe {
 .checkbox {
     opacity: 0;
     position: absolute;
+}
+
+/* Home button hover effect */
+.hover {
+    background-image: linear-gradient(rgb(250 204 21), rgb(250 204 21));
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+    transition: 0.15s;
+}
+.hover:hover {
+    background-size: 100% 100%;
 }
 
 .checkbox-label {

@@ -6,7 +6,7 @@ const WrongURL = () => {
     return (
         <div className="w-full h-screen">
             <div className="star-wars w-full h-screen flex flex-col justify-center items-center">
-                <div className="crawl">Oops... This page does not exist.</div>
+                <div className="crawl">This is not page you're looking for.</div>
             </div>
 
             <div className="flex justify-center item-start">

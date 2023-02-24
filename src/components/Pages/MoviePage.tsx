@@ -5,6 +5,7 @@ import DescriptionGenre from "../Movie-Page/DescriptionGenre";
 import Ratings from "../Movie-Page/Ratings";
 import DirectorsActors from "../Movie-Page/DirectorsActors";
 import MovieTrailer from "../Movie-Page/MovieTrailer";
+import HomeButton from "../Movie-Page/HomeButton";
 
 import { useLocation } from "react-router-dom";
 
@@ -90,7 +91,7 @@ const MoviePage = () => {
     }, []);
 
     return (
-        <div className="w-full min-h-screen flex justify-center items-start">
+        <div className="relative w-full min-h-screen flex justify-center items-start">
             {movie && (
                 <div className="w-full sm:w-11/12 md:w-8/12 lg:w-6/12 xl:w-6/12 2xl:w-4/12">
                     <PosterTitleInformation
@@ -109,6 +110,7 @@ const MoviePage = () => {
                     <DirectorsActors director={movie.director} actors={movie.actors} />
                 </div>
             )}
+            <HomeButton />
         </div>
     );
 };
