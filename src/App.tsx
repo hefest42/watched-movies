@@ -6,7 +6,6 @@ import HomePage from "./components/Pages/HomePage";
 import MoviePage from "./components/Pages/MoviePage";
 import WrongURL from "./components/Pages/WrongURL";
 
-// TODO fix issue with multiple directors
 // TODO fix issue with rottentomatoes link
 // TODO change the arrow size on actors arrow down svg
 // TODO potentially change the poster size of md:
