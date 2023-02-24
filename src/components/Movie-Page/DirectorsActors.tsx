@@ -10,13 +10,15 @@ interface DirectorsActorsProps {
 const DirectorsActors = ({ director, actors }: DirectorsActorsProps) => {
     const [showActors, setShowActors] = useState(true);
 
+    console.log(director);
+
     return (
         <div className="py-4 px-2">
             <div className="w-full py-4 border-b border-yellow-400 flex">
                 Director:
                 {director.map((dir) => (
                     <p key={dir} className="ml-4">
-                        {director}
+                        {dir}
                     </p>
                 ))}
             </div>
