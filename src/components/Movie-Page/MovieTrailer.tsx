@@ -13,6 +13,7 @@ const MovieTrailer = ({ trailer }: MovieTrailerProps) => {
 
     return (
         <iframe
+            className="my-6"
             src={`https://www.youtube.com/embed/${trailerId}`}
             title="YouTube video player"
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
