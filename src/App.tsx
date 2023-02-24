@@ -6,7 +6,6 @@ import HomePage from "./components/Pages/HomePage";
 import MoviePage from "./components/Pages/MoviePage";
 import WrongURL from "./components/Pages/WrongURL";
 
-// TODO add a home page button to movie page
 // TODO add search function
 // TODO see if you can add lazy loading for the whole movie page
 

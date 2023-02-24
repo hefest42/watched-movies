@@ -1,5 +1,7 @@
 import React, { useMemo } from "react";
 
+import CheckboxInput from "./CheckboxInput";
+
 import { AiOutlineClose } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { movieList } from "../../store/MOVIES";
@@ -53,12 +55,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, addFilters }: SideMenuProps) 
 
                 <div className="w-full mt-8 flex flex-col justify-start items-start">
                     {movieInputs.map((genre) => (
-                        <div key={genre} className="mt-2">
-                            <input type="checkbox" name={genre} id={genre} onChange={() => addFiltersHandler(genre)} />
-                            <label className="ml-2" htmlFor={genre}>
-                                {genre}
-                            </label>
-                        </div>
+                        <CheckboxInput key={genre} genre={genre} addFiltersHandler={addFiltersHandler} />
                     ))}
                 </div>
             </div>
