@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { BsSearch } from "react-icons/bs";
 
-const SearchForm = () => {
+interface SearchFormProps {
+    setSearchInput: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const SearchForm = ({ setSearchInput }: SearchFormProps) => {
+    const [inputValue, setInputValue] = useState<string>("");
+
     const searchHandler = (e: React.FormEvent) => {
         e.preventDefault();
+
+        setSearchInput(inputValue);
+        setInputValue("");
     };
     return (
         <form className="mt-4 flex flex-col" onSubmit={searchHandler}>
@@ -17,6 +26,8 @@ const SearchForm = () => {
                     name="search"
                     placeholder="Search For a Movie"
                     autoComplete="off"
+                    onChange={(e) => setInputValue(e.target.value)}
+                    value={inputValue}
                 />
             </div>
             <button className="bg-yellow-400 text-black w-full h-10 mt-4 font-bold hover:bg-yellow-300">SEARCH</button>

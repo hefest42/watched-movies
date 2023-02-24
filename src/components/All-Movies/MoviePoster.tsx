@@ -41,7 +41,7 @@ const MoviePoster = ({ movie }: MoviePosterProps) => {
                         src={movie.poster}
                         onLoad={() => setLoading(false)}
                         alt="movie poster"
-                        className="movie w-full h-[85%] object-cover"
+                        className="movie w-full h-[85%] aspect-auto"
                     />
                     <h1 className="text-2xl text-center mt-2">{movie.name}</h1>
                 </Link>

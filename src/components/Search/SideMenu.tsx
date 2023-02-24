@@ -1,6 +1,7 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import SearchForm from "./SearchForm";
+import SearchResults from "./SearchResults";
 import CheckboxInput from "./CheckboxInput";
 import ThemeToggle from "./ThemeToggle";
 
@@ -15,9 +16,19 @@ interface SideMenuProps {
 }
 
 const SideMenu = ({ showSideMenu, setShowSideMenu, addFilters }: SideMenuProps) => {
+    const [searchedMovies, setSearchedMovies] = useState<any[]>([]);
+    const [searchInput, setSearchInput] = useState<string>("");
     const movieInputs = useMemo(() => [...new Set(movieList.map((movie) => movie.genre).flat())], [movieList]);
 
     const addFiltersHandler = (filter: string) => addFilters(filter);
+
+    useEffect(() => {
+        if (searchInput === "") return;
+
+        const searchResults = movieList.filter((movie) => movie.name.toLowerCase().includes(searchInput.toLowerCase()));
+
+        setSearchedMovies(searchResults);
+    }, [searchInput]);
 
     return (
         <div
@@ -34,12 +45,13 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, addFilters }: SideMenuProps) 
                     />
                 </div>
 
-                <SearchForm />
+                <SearchForm setSearchInput={setSearchInput} />
 
-                <div className="w-full mt-8 flex flex-col justify-start items-start">
+                <div className="relative w-full mt-8 flex flex-col justify-start items-start">
                     {movieInputs.map((genre) => (
                         <CheckboxInput key={genre} genre={genre} addFiltersHandler={addFiltersHandler} />
                     ))}
+                    <SearchResults movies={searchedMovies} searchInput={searchInput} />
                 </div>
             </div>
 
