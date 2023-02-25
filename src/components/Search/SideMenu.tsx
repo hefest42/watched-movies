@@ -16,6 +16,7 @@ interface SideMenuProps {
 }
 
 const SideMenu = ({ showSideMenu, setShowSideMenu, addFilters }: SideMenuProps) => {
+    const [displaySearchResults, setDisplaySearchResults] = useState(false);
     const [searchedMovies, setSearchedMovies] = useState<any[]>([]);
     const [searchInput, setSearchInput] = useState<string>("");
     const movieInputs = useMemo(() => [...new Set(movieList.map((movie) => movie.genre).flat())], [movieList]);
@@ -45,13 +46,19 @@ const SideMenu = ({ showSideMenu, setShowSideMenu, addFilters }: SideMenuProps) 
                     />
                 </div>
 
-                <SearchForm setSearchInput={setSearchInput} />
+                <SearchForm setSearchInput={setSearchInput} setDisplaySearchResults={setDisplaySearchResults} />
 
                 <div className="relative w-full mt-8 flex flex-col justify-start items-start">
                     {movieInputs.map((genre) => (
                         <CheckboxInput key={genre} genre={genre} addFiltersHandler={addFiltersHandler} />
                     ))}
-                    <SearchResults movies={searchedMovies} searchInput={searchInput} />
+                    {displaySearchResults && (
+                        <SearchResults
+                            movies={searchedMovies}
+                            searchInput={searchInput}
+                            setDisplaySearchResults={setDisplaySearchResults}
+                        />
+                    )}
                 </div>
             </div>
 

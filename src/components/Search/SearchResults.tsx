@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 interface SearchResultsProps {
     movies: any[];
     searchInput: string;
+    setDisplaySearchResults: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SearchResults = ({ movies, searchInput }: SearchResultsProps) => {
+const SearchResults = ({ movies, searchInput, setDisplaySearchResults }: SearchResultsProps) => {
     function escapeRegExp(text: string) {
         return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     }
@@ -40,7 +41,7 @@ const SearchResults = ({ movies, searchInput }: SearchResultsProps) => {
         <div className="absolute top-0 left-0 w-full h-full bg-green-400 overflow-y-scroll">
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl">Search Results</h1>
-                <AiOutlineClose className="w-8 h-8 cursor-pointer" />
+                <AiOutlineClose className="w-8 h-8 cursor-pointer" onClick={() => setDisplaySearchResults(false)} />
             </div>
             <div className="w-full min-h-full">
                 {movies.map((movie) => (

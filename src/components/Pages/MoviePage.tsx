@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 
-import PosterTitleInformation from "../Movie-Page/PosterTitleInformation";
-import DescriptionGenre from "../Movie-Page/DescriptionGenre";
-import Ratings from "../Movie-Page/Ratings";
-import DirectorsActors from "../Movie-Page/DirectorsActors";
-import MovieTrailer from "../Movie-Page/MovieTrailer";
+import { useLocation, useParams } from "react-router-dom";
+
 import HomeButton from "../Movie-Page/HomeButton";
-
-import { useLocation } from "react-router-dom";
+import MoviePageLoading from "../Movie-Page/MoviePageLoading";
+const PosterTitleInformation = lazy(() => import("../Movie-Page/PosterTitleInformation"));
+const DescriptionGenre = lazy(() => import("../Movie-Page/DescriptionGenre"));
+const Ratings = lazy(() => import("../Movie-Page/Ratings"));
+const DirectorsActors = lazy(() => import("../Movie-Page/DirectorsActors"));
+const MovieTrailer = lazy(() => import("../Movie-Page/MovieTrailer"));
 
 interface Movie {
     title: string;
@@ -36,11 +37,13 @@ interface Movie {
 //https://rapidapi.com/goodmoviesaps/api/movie-details1/
 const MoviePage = () => {
     const location = useLocation();
+    const params = useParams();
     const [movie, setMovie] = useState<Movie>();
     const [movieGenres, setMovieGenres] = useState<string[]>([]);
 
     useEffect(() => {
-        const { id, genres } = location.state;
+        const { genres } = location.state;
+        const { id } = params;
 
         setMovieGenres(genres);
 
@@ -92,25 +95,27 @@ const MoviePage = () => {
 
     return (
         <div className="relative w-full min-h-screen flex justify-center items-start">
-            {movie && (
-                <div className="w-full sm:w-11/12 md:w-8/12 lg:w-6/12 xl:w-6/12 2xl:w-4/12">
-                    <PosterTitleInformation
-                        poster={movie.poster}
-                        title={movie.title}
-                        info={{
-                            type: movie.type,
-                            runtime: movie.runtime,
-                            release: movie.released,
-                            rating: `${movie.certification}-${movie.ageRating}`,
-                        }}
-                    />
-                    <DescriptionGenre description={movie.description} genres={movieGenres} />
-                    <Ratings title={movie.title} ratings={movie.ratings} />
-                    <MovieTrailer trailer={movie.trailer} />
-                    <DirectorsActors director={movie.director} actors={movie.actors} />
-                </div>
-            )}
-            <HomeButton />
+            <Suspense fallback={<MoviePageLoading />}>
+                {movie && (
+                    <div className="w-full sm:w-11/12 md:w-8/12 lg:w-6/12 xl:w-6/12 2xl:w-4/12">
+                        <PosterTitleInformation
+                            poster={movie.poster}
+                            title={movie.title}
+                            info={{
+                                type: movie.type,
+                                runtime: movie.runtime,
+                                release: movie.released,
+                                rating: `${movie.certification}-${movie.ageRating}`,
+                            }}
+                        />
+                        <DescriptionGenre description={movie.description} genres={movieGenres} />
+                        <Ratings title={movie.title} ratings={movie.ratings} />
+                        <MovieTrailer trailer={movie.trailer} />
+                        <DirectorsActors director={movie.director} actors={movie.actors} />
+                    </div>
+                )}
+                <HomeButton />
+            </Suspense>
         </div>
     );
 };
