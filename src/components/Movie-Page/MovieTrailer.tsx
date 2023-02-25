@@ -9,14 +9,14 @@ const MovieTrailer = ({ trailer }: MovieTrailerProps) => {
 
     useEffect(() => {
         setTrailerId(trailer.split("=")[1]);
-    }, []);
+    }, [trailer]);
 
     return (
         <iframe
             className="my-6"
             src={`https://www.youtube.com/embed/${trailerId}`}
             title="YouTube video player"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
         ></iframe>
     );

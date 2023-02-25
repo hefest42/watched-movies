@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { FaImdb } from "react-icons/fa";
 import { SiRottentomatoes } from "react-icons/si";
@@ -16,12 +16,11 @@ type MovieRating = {
 };
 
 interface RatingsProps {
-    title: string;
     ratings: MovieRating[];
 }
 
-const Ratings = ({ title, ratings }: RatingsProps) => {
-    const location = useLocation();
+const Ratings = ({ ratings }: RatingsProps) => {
+    const params = useParams();
     const [movieRatings, setMovieRatings] = useState<MovieRating[]>([]);
 
     const linkIconHandler = (source: string) => {
@@ -31,10 +30,9 @@ const Ratings = ({ title, ratings }: RatingsProps) => {
     };
 
     useEffect(() => {
-        const { id } = location.state;
+        const { id } = params;
 
         let rottentomatoesLink: any;
-
         // tomaotes has a proper working url, but tomatoesaudience doesn't...
         const filteredRatings = ratings
             .filter((rating) => {
@@ -53,7 +51,7 @@ const Ratings = ({ title, ratings }: RatingsProps) => {
             });
 
         setMovieRatings(filteredRatings);
-    }, [ratings]);
+    }, [ratings, params]);
 
     return (
         <div className="flex px-2 mt-4">

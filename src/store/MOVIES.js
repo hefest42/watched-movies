@@ -23,7 +23,7 @@ export const movieList = [
     {
         id: "tt0190590",
         name: "O Brother, Where Art Thou?",
-        genre: ["Adventure", "Comedy", "Crime"],
+        genre: ["Adventure", "Comedy", "Crime", "Music"],
         poster: "https://m.media-amazon.com/images/M/MV5BMjZkOTdmMWItOTkyNy00MDdjLTlhNTQtYzU3MzdhZjA0ZDEyXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg"
         
     },

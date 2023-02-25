@@ -4,15 +4,17 @@ import { BsSearch } from "react-icons/bs";
 
 interface SearchFormProps {
     setSearchInput: React.Dispatch<React.SetStateAction<string>>;
+    setDisplaySearchResults: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SearchForm = ({ setSearchInput }: SearchFormProps) => {
+const SearchForm = ({ setSearchInput, setDisplaySearchResults }: SearchFormProps) => {
     const [inputValue, setInputValue] = useState<string>("");
 
     const searchHandler = (e: React.FormEvent) => {
         e.preventDefault();
 
         setSearchInput(inputValue);
+        setDisplaySearchResults(true);
         setInputValue("");
     };
     return (
