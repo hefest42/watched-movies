@@ -65,6 +65,8 @@ const MoviePage = () => {
 
                 const [movieDetails, movieDirectorAndActor] = await Promise.all(response.map((res) => res.json()));
 
+                console.log(movieDetails, movieDirectorAndActor);
+
                 const combinedMovie = {
                     title: movieDetails.title,
                     year: movieDetails.year,
@@ -93,7 +95,7 @@ const MoviePage = () => {
 
     return (
         <div className="relative w-full min-h-screen flex justify-center items-start">
-            <Suspense fallback={<MoviePageLoading />}>
+            <Suspense fallback={<div>LOADING...</div>}>
                 {movie && (
                     <div className="w-full sm:w-11/12 md:w-8/12 lg:w-6/12 xl:w-6/12 2xl:w-4/12">
                         <PosterTitleInformation

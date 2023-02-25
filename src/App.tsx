@@ -6,8 +6,8 @@ import HomePage from "./components/Pages/HomePage";
 import MoviePage from "./components/Pages/MoviePage";
 import WrongURL from "./components/Pages/WrongURL";
 
-// TODO add search function
-// TODO see if you can add lazy loading for the whole movie page
+//TODO change colors for dark/light theme
+//TODO add error handling for movie page
 
 function App() {
     return (
