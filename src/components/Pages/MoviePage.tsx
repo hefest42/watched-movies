@@ -31,6 +31,7 @@ interface Movie {
     trailer: string;
     director: string[];
     actors: { id: string; name: string }[];
+    genres: string[];
 }
 
 //https://rapidapi.com/linaspurinis/api/mdblist/
@@ -39,13 +40,9 @@ const MoviePage = () => {
     const location = useLocation();
     const params = useParams();
     const [movie, setMovie] = useState<Movie>();
-    const [movieGenres, setMovieGenres] = useState<string[]>([]);
 
     useEffect(() => {
-        const { genres } = location.state;
         const { id } = params;
-
-        setMovieGenres(genres);
 
         const fetchMovie = async () => {
             try {
@@ -82,6 +79,7 @@ const MoviePage = () => {
                     trailer: movieDetails.trailer,
                     director: movieDirectorAndActor.director_names,
                     actors: movieDirectorAndActor.actors,
+                    genres: movieDirectorAndActor.genres,
                 };
 
                 setMovie(combinedMovie);
@@ -91,7 +89,7 @@ const MoviePage = () => {
         };
 
         fetchMovie();
-    }, []);
+    }, [params]);
 
     return (
         <div className="relative w-full min-h-screen flex justify-center items-start">
@@ -108,8 +106,8 @@ const MoviePage = () => {
                                 rating: `${movie.certification}-${movie.ageRating}`,
                             }}
                         />
-                        <DescriptionGenre description={movie.description} genres={movieGenres} />
-                        <Ratings title={movie.title} ratings={movie.ratings} />
+                        <DescriptionGenre description={movie.description} genres={movie.genres} />
+                        <Ratings ratings={movie.ratings} />
                         <MovieTrailer trailer={movie.trailer} />
                         <DirectorsActors director={movie.director} actors={movie.actors} />
                     </div>
