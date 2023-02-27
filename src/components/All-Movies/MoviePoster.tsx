@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 // not sure if all this is neccessary
 interface MoviePosterProps {
     movie: {
@@ -26,7 +28,7 @@ const MoviePoster = ({ movie }: MoviePosterProps) => {
                         loading ? "visible" : "invisible"
                     }`}
                 >
-                    LOADING...
+                    <AiOutlineLoading3Quarters className="w-10 h-10 animate-spin" />
                 </div>
                 <Link
                     to={`movie/${movie.id}`}
