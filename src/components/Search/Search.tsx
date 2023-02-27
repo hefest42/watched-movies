@@ -43,7 +43,7 @@ const Search = ({ addFilters, movies }: SearchProps) => {
                 />
             </div>
             <div
-                className={`fixed top-0 left-0 bg-slate-500 w-7/12 sm:w-5/12 h-screen z-50 flex flex-col justify-between transition-transform md:relative md:w-[100%] md:translate-x-0 ${
+                className={`fixed top-0 left-0 w-7/12 sm:w-5/12 h-screen z-50 flex flex-col justify-between transition-transform md:relative md:w-[100%] md:translate-x-0 ${
                     showSideMenu ? "" : "-translate-x-[100%]"
                 }`}
             >
