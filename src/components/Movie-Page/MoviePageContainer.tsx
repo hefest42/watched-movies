@@ -8,6 +8,7 @@ import DescriptionGenre from "./DescriptionGenre";
 import Ratings from "./Ratings";
 import DirectorsActors from "./DirectorsActors";
 import MovieTrailer from "./MovieTrailer";
+import MoviePageError from "./MoviePageError";
 
 interface Movie {
     title: string;
@@ -39,12 +40,15 @@ const MoviePageContainer = () => {
     const location = useLocation();
     const params = useParams();
     const [movie, setMovie] = useState<Movie>();
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         const { id } = params;
 
         const fetchMovie = async () => {
             try {
+                setError(false);
+
                 const response = await Promise.all([
                     fetch(`https://mdblist.p.rapidapi.com/?i=${id}`, {
                         method: "GET",
@@ -62,9 +66,13 @@ const MoviePageContainer = () => {
                     }),
                 ]);
 
-                const [movieDetails, movieDirectorAndActor] = await Promise.all(response.map((res) => res.json()));
+                await Promise.all(
+                    response.map((res) => {
+                        if (!res.ok) throw new Error();
+                    })
+                );
 
-                console.log(movieDetails, movieDirectorAndActor);
+                const [movieDetails, movieDirectorAndActor] = await Promise.all(response.map((res) => res.json()));
 
                 const combinedMovie = {
                     title: movieDetails.title,
@@ -86,6 +94,7 @@ const MoviePageContainer = () => {
                 setMovie(combinedMovie);
             } catch (error) {
                 console.error(error);
+                setError(true);
             }
         };
 
@@ -94,25 +103,28 @@ const MoviePageContainer = () => {
 
     return (
         <div className="relative w-full min-h-screen flex justify-center items-start">
-            {movie && (
-                <div className="w-full sm:w-11/12 md:w-8/12 lg:w-6/12 xl:w-6/12 2xl:w-4/12">
-                    <PosterTitleInformation
-                        poster={movie.poster}
-                        title={movie.title}
-                        info={{
-                            type: movie.type,
-                            runtime: movie.runtime,
-                            release: movie.released,
-                            rating: `${movie.certification}-${movie.ageRating}`,
-                        }}
-                    />
-                    <DescriptionGenre description={movie.description} genres={movie.genres} />
-                    <Ratings ratings={movie.ratings} />
-                    <MovieTrailer trailer={movie.trailer} />
-                    <DirectorsActors director={movie.director} actors={movie.actors} />
-                </div>
+            {error && <MoviePageError />}
+            {movie && !error && (
+                <>
+                    <div className="w-full sm:w-11/12 md:w-8/12 lg:w-6/12 xl:w-6/12 2xl:w-4/12">
+                        <PosterTitleInformation
+                            poster={movie.poster}
+                            title={movie.title}
+                            info={{
+                                type: movie.type,
+                                runtime: movie.runtime,
+                                release: movie.released,
+                                rating: `${movie.certification}-${movie.ageRating}`,
+                            }}
+                        />
+                        <DescriptionGenre description={movie.description} genres={movie.genres} />
+                        <Ratings ratings={movie.ratings} />
+                        <MovieTrailer trailer={movie.trailer} />
+                        <DirectorsActors director={movie.director} actors={movie.actors} />
+                    </div>
+                    <HomeButton />
+                </>
             )}
-            <HomeButton />
         </div>
     );
 };
