@@ -1,7 +1,6 @@
 import React from "react";
 
 import MoviePoster from "./MoviePoster";
-import { movieList } from "../../store/MOVIES";
 
 interface AllMoviesProps {
     movies: { id: string; name: string; genre: string[]; poster: string }[];
