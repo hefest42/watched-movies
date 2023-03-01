@@ -6,7 +6,7 @@ import HomePage from "./components/Pages/HomePage";
 import MoviePage from "./components/Pages/MoviePage";
 import WrongURL from "./components/Pages/WrongURL";
 
-//TODO change colors for dark/light theme
+//TODO maybe try to figure one search input to search for movie/director/actor
 
 interface ThemeContextValues {
     theme: boolean;

@@ -24,9 +24,23 @@ const Search = ({ addFilters, movies }: SearchProps) => {
     const movieInputs = useMemo(() => [...new Set(movieList.map((movie) => movie.genre).flat())], [movieList]);
 
     useEffect(() => {
-        if (searchInput === "") return;
-        const searchResults = movieList.filter((movie) => movie.name.toLowerCase().includes(searchInput.toLowerCase()));
-        setSearchedMovies(searchResults);
+        const searchResultsHandler = () => {
+            if (searchInput === "") {
+                setDisplaySearchResults(false);
+                return;
+            }
+
+            const test = movieList.filter((movie) =>
+                movie.name.toLowerCase().includes(searchInput.toLowerCase().trim())
+            );
+
+            setSearchedMovies(test);
+            setDisplaySearchResults(true);
+        };
+
+        const tick = setTimeout(searchResultsHandler, 500);
+
+        return () => clearTimeout(tick);
     }, [searchInput]);
 
     useEffect(() => {
@@ -56,7 +70,7 @@ const Search = ({ addFilters, movies }: SearchProps) => {
                         />
                     </div>
 
-                    <SearchForm setSearchInput={setSearchInput} setDisplaySearchResults={setDisplaySearchResults} />
+                    <SearchForm searchInput={searchInput} setSearchInput={setSearchInput} />
 
                     <div className="relative w-full mt-8 flex flex-col justify-start items-start">
                         {movieInputs.map((genre) => (
