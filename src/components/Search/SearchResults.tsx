@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
+
+import { ThemeContext } from "../../App";
 
 interface SearchResultsProps {
     movies: any[];
@@ -10,6 +12,8 @@ interface SearchResultsProps {
 }
 
 const SearchResults = ({ movies, searchInput, setDisplaySearchResults }: SearchResultsProps) => {
+    const { theme } = useContext(ThemeContext);
+
     function escapeRegExp(text: string) {
         return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     }
@@ -27,7 +31,7 @@ const SearchResults = ({ movies, searchInput, setDisplaySearchResults }: SearchR
             .filter((part) => part)
             .map((part, i) =>
                 regex.test(part) ? (
-                    <span style={{ backgroundColor: "coral" }} key={i}>
+                    <span style={{ backgroundColor: "rgb(250, 204,21)", color: "black" }} key={i}>
                         {part}
                     </span>
                 ) : (
@@ -38,7 +42,7 @@ const SearchResults = ({ movies, searchInput, setDisplaySearchResults }: SearchR
     }
 
     return (
-        <div className="absolute top-0 left-0 w-full h-full bg-green-400 overflow-y-scroll">
+        <div className={`absolute top-0 left-0 w-full h-full overflow-y-scroll ${theme ? "bg-slate-800" : "bg-white"}`}>
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl">Search Results</h1>
                 <AiOutlineClose className="w-8 h-8 cursor-pointer" onClick={() => setDisplaySearchResults(false)} />
@@ -52,7 +56,7 @@ const SearchResults = ({ movies, searchInput, setDisplaySearchResults }: SearchR
                             genres: movie.genre,
                         }}
                         key={movie.name}
-                        className="w-full h-24 mt-4 flex justify-start items-center"
+                        className={`w-full h-24 mt-4 border-b-4 border-yellow-400 flex justify-start items-center`}
                     >
                         <img src={movie.poster} alt="" className="aspect-auto h-full" />
 

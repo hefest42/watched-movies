@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useContext } from "react";
 
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineClose } from "react-icons/ai";
@@ -9,6 +9,7 @@ import CheckboxInput from "./CheckboxInput";
 import SearchResults from "./SearchResults";
 import ThemeToggle from "./ThemeToggle";
 
+import { ThemeContext } from "../../App";
 interface SearchProps {
     addFilters: (filter: string) => void;
     movies: { id: string; name: string; genre: string[]; poster: string }[];
@@ -16,6 +17,7 @@ interface SearchProps {
 
 // This product uses the TMDB API but is not endorsed or certified by TMDB.
 const Search = ({ addFilters, movies }: SearchProps) => {
+    const { theme } = useContext(ThemeContext);
     const [showSideMenu, setShowSideMenu] = useState(false);
     const [displaySearchResults, setDisplaySearchResults] = useState(false);
     const [searchInput, setSearchInput] = useState<string>("");
@@ -56,10 +58,11 @@ const Search = ({ addFilters, movies }: SearchProps) => {
                     onClick={() => setShowSideMenu((state) => !state)}
                 />
             </div>
+
             <div
-                className={`fixed top-0 left-0 w-7/12 sm:w-5/12 h-screen z-50 flex flex-col justify-between transition-transform md:relative md:w-[100%] md:translate-x-0 ${
+                className={`fixed top-0 left-0  w-7/12 sm:w-5/12 h-screen z-50 flex flex-col justify-between transition-transform md:relative md:w-[100%] md:translate-x-0 ${
                     showSideMenu ? "" : "-translate-x-[100%]"
-                }`}
+                } ${theme ? "bg-slate-800" : "bg-white"}`}
             >
                 <div className="px-2">
                     <div className="flex justify-between items-center ">
