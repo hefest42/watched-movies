@@ -12,7 +12,7 @@ const DescriptionGenre = ({ description, genres }: DescriptionGenreProps) => {
                 {genres.map((genre) => (
                     <div
                         key={genre}
-                        className="px-2 py-1 mr-2 rounded-3xl border border-yellow-500 sm:px-4 sm:py-1 sm:text-lg"
+                        className="px-2 py-1 mr-2 rounded-3xl border border-yellow-500 sm:px-4 sm:py-1 lg:text-base"
                     >
                         {genre}
                     </div>
