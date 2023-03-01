@@ -11,7 +11,7 @@ const ThemeToggle = () => {
             <div>
                 <input
                     type="checkbox"
-                    checked={theme}
+                    defaultChecked={theme}
                     className="checkbox"
                     id="checkbox"
                     onClick={() => setTheme((state) => !state)}
