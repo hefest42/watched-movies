@@ -42,7 +42,7 @@ const MoviePoster = ({ movie }: MoviePosterProps) => {
                         loading="lazy"
                         src={movie.poster}
                         onLoad={() => setLoading(false)}
-                        alt="movie poster"
+                        alt={`${movie.name} poster`}
                         className="movie w-full h-[85%] aspect-auto"
                     />
                     <h1 className="text-base text-center mt-2">{movie.name}</h1>
