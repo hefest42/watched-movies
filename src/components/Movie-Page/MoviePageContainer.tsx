@@ -45,6 +45,8 @@ const MoviePageContainer = () => {
     useEffect(() => {
         const { id } = params;
 
+        document.body.scrollTop = 0;
+
         const fetchMovie = async () => {
             try {
                 setError(false);

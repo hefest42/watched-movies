@@ -38,9 +38,6 @@ const DirectorsActors = ({ director, actors }: DirectorsActorsProps) => {
                     </p>
                 ))}
             </div>
-
-            {/* dont forget to remove */}
-            <div className="w-full h-96"></div>
         </div>
     );
 };
