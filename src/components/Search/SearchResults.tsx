@@ -47,23 +47,29 @@ const SearchResults = ({ movies, searchInput, setDisplaySearchResults }: SearchR
                 <h1 className="text-2xl">Search Results</h1>
                 <AiOutlineClose className="w-8 h-8 cursor-pointer" onClick={() => setDisplaySearchResults(false)} />
             </div>
-            <div className="w-full min-h-full">
-                {movies.map((movie) => (
-                    <Link
-                        to={`movie/${movie.id}`}
-                        state={{
-                            id: movie.id,
-                            genres: movie.genre,
-                        }}
-                        key={movie.name}
-                        className={`w-full h-24 mt-4 border-b-4 border-yellow-400 flex justify-start items-center`}
-                    >
-                        <img src={movie.poster} alt="" className="aspect-auto h-full" />
 
-                        <div className="text-lg ml-10">{highlight(movie.name, searchInput)}</div>
-                    </Link>
-                ))}
-            </div>
+            {searchInput && movies.length === 0 && (
+                <div className="w-full mt-10 text-lg">{`Could not find any results for the term "${searchInput}"`}</div>
+            )}
+            {searchInput && movies.length > 0 && (
+                <div className="w-full min-h-full">
+                    {movies.map((movie) => (
+                        <Link
+                            to={`movie/${movie.id}`}
+                            state={{
+                                id: movie.id,
+                                genres: movie.genre,
+                            }}
+                            key={movie.name}
+                            className={`w-full h-24 mt-4 border-b-4 border-yellow-400 flex justify-start items-center`}
+                        >
+                            <img src={movie.poster} alt="" className="aspect-auto h-full" />
+
+                            <div className="text-lg ml-10">{highlight(movie.name, searchInput)}</div>
+                        </Link>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
