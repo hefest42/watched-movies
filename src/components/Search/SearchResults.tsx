@@ -63,7 +63,7 @@ const SearchResults = ({ movies, searchInput, closeSearchResults }: SearchResult
                             key={movie.name}
                             className={`w-full h-24 mt-4 border-b-4 border-yellow-400 flex justify-start items-center`}
                         >
-                            <img src={movie.poster} alt="" className="aspect-auto h-full" />
+                            <img src={movie.poster} alt={`${movie.name} poster`} className="aspect-auto h-full" />
 
                             <div className="text-lg ml-10">{highlight(movie.name, searchInput)}</div>
                         </Link>

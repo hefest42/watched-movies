@@ -10,7 +10,7 @@ const CheckboxInput = ({ genre, addFiltersHandler, availableGenres }: CheckboxIn
     const isActive = availableGenres.includes(genre);
 
     return (
-        <div key={genre} className={`mt-2 ${isActive ? "" : " line-through"}`}>
+        <div key={genre} className={`mt-2 ${isActive ? "" : "line-through"}`}>
             <input
                 type="checkbox"
                 disabled={!isActive}
