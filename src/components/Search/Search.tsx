@@ -25,6 +25,11 @@ const Search = ({ addFilters, movies }: SearchProps) => {
     const [availableGenres, setAvailableGenres] = useState<string[]>([]);
     const movieInputs = useMemo(() => [...new Set(movieList.map((movie) => movie.genre).flat())], [movieList]);
 
+    const closeSearchResultsHandler = () => {
+        setSearchInput("");
+        setDisplaySearchResults(false);
+    };
+
     useEffect(() => {
         const searchResultsHandler = () => {
             if (searchInput === "") {
@@ -88,7 +93,7 @@ const Search = ({ addFilters, movies }: SearchProps) => {
                             <SearchResults
                                 movies={searchedMovies}
                                 searchInput={searchInput}
-                                setDisplaySearchResults={setDisplaySearchResults}
+                                closeSearchResults={closeSearchResultsHandler}
                             />
                         )}
                     </div>

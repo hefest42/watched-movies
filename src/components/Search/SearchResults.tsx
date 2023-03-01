@@ -8,10 +8,10 @@ import { ThemeContext } from "../../App";
 interface SearchResultsProps {
     movies: any[];
     searchInput: string;
-    setDisplaySearchResults: React.Dispatch<React.SetStateAction<boolean>>;
+    closeSearchResults: () => void;
 }
 
-const SearchResults = ({ movies, searchInput, setDisplaySearchResults }: SearchResultsProps) => {
+const SearchResults = ({ movies, searchInput, closeSearchResults }: SearchResultsProps) => {
     const { theme } = useContext(ThemeContext);
 
     function escapeRegExp(text: string) {
@@ -45,7 +45,7 @@ const SearchResults = ({ movies, searchInput, setDisplaySearchResults }: SearchR
         <div className={`absolute top-0 left-0 w-full h-full overflow-y-scroll ${theme ? "bg-slate-800" : "bg-white"}`}>
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl">Search Results</h1>
-                <AiOutlineClose className="w-8 h-8 cursor-pointer" onClick={() => setDisplaySearchResults(false)} />
+                <AiOutlineClose className="w-8 h-8 cursor-pointer" onClick={() => closeSearchResults()} />
             </div>
 
             {searchInput && movies.length === 0 && (
