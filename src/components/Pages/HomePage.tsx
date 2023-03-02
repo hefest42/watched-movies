@@ -31,6 +31,12 @@ const HomePage = () => {
 
     useEffect(() => {
         setMovies(movieList);
+
+        const sessionGenres = sessionStorage.getItem("genres");
+
+        const parsedSessionsGenres = sessionGenres ? JSON.parse(sessionGenres) : [];
+
+        setFilters(parsedSessionsGenres);
     }, []);
 
     return (

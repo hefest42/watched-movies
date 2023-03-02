@@ -23,17 +23,10 @@ const CheckboxInput = ({ genre, addFiltersHandler, availableGenres }: CheckboxIn
                 ? sessionGenres.filter((gen) => gen !== genre)
                 : [...sessionGenres, genre];
             const stringifySessionGenres = JSON.stringify(newSessionGenres);
-            console.log(newSessionGenres);
             sessionStorage.setItem("genres", stringifySessionGenres);
         }
 
-        // if (sessionStorage.getItem("genres")) {
-        //     sessionGenres = sessionStorage.getItem("genres");
-        // } else { JSON.stringify([...sessionGenres, genre]);
-        //     sessionStorage.setItem("genres", JSON.stringify([genre]));
-        // }
-
-        // addFiltersHandler(genre);
+        addFiltersHandler(genre);
     };
 
     return (
