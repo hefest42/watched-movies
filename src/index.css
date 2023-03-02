@@ -6,11 +6,15 @@
 
 body {
     font-family: "IBM Plex Mono", monospace;
-
     margin: 0;
     padding: 0;
+    text-decoration-thickness: 8px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+input[type="checkbox"] {
+    background-color: #f1c40f;
 }
 
 .movie {

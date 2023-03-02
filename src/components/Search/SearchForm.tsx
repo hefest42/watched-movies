@@ -13,24 +13,12 @@ const SearchForm = ({ searchInput, setSearchInput }: SearchFormProps) => {
         e.preventDefault();
     };
 
-    // useEffect(() => {
-    //     const searchResultsHandler = () => {
-    //         const test = movieList.filter((movie) => movie.name.toLowerCase().includes(inputValue.toLowerCase()));
-
-    //         console.log(test);
-    //     };
-
-    //     const tick = setTimeout(searchResultsHandler, 500);
-
-    //     return () => clearTimeout(tick);
-    // }, [inputValue]);
-
     return (
         <form className="mt-4 flex flex-col" onSubmit={searchHandler}>
-            <div className="bg-white h-8 flex justify-center items-center">
+            <div className="bg-white h-8 flex justify-center items-center border-slate-800 border-2">
                 <BsSearch className="text-black w-6 h-6 ml-2" />
                 <input
-                    className="bg-transparent text-black w-full h-full ml-2 outline-none border-none"
+                    className="bg-transparent text-black w-full h-full ml-2 outline-none "
                     type="text"
                     id="search"
                     name="search"
