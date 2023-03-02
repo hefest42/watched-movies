@@ -11,12 +11,13 @@ import ThemeToggle from "./ThemeToggle";
 
 import { ThemeContext } from "../../App";
 interface SearchProps {
+    filters: string[];
     addFilters: (filter: string) => void;
     movies: { id: string; name: string; genre: string[]; poster: string }[];
 }
 
 // This product uses the TMDB API but is not endorsed or certified by TMDB.
-const Search = ({ addFilters, movies }: SearchProps) => {
+const Search = ({ filters, addFilters, movies }: SearchProps) => {
     const { theme } = useContext(ThemeContext);
     const [showSideMenu, setShowSideMenu] = useState(false);
     const [displaySearchResults, setDisplaySearchResults] = useState(false);
@@ -85,6 +86,7 @@ const Search = ({ addFilters, movies }: SearchProps) => {
                             <CheckboxInput
                                 key={genre}
                                 genre={genre}
+                                filters={filters}
                                 addFiltersHandler={addFilters}
                                 availableGenres={availableGenres}
                             />

@@ -41,7 +41,7 @@ const HomePage = () => {
 
     return (
         <div className="w-full flex flex-col md:flex-row md:justify-end">
-            <Search addFilters={addFilters} movies={movies} />
+            <Search filters={filters} addFilters={addFilters} movies={movies} />
             <AllMovies movies={movies} />
         </div>
     );
